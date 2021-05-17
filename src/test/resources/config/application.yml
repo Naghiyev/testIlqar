@@ -1,0 +1,100 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration is used for unit/integration tests.
+#
+# More information on profiles: https://www.jhipster.tech/profiles/
+# More information on configuration properties: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+mongock:
+  change-logs-scan-package:
+    - com.ilqar.tst.config.dbmigrations
+  mongo-db:
+    read-concern: local
+    write-concern:
+      journal: false
+
+spring:
+  application:
+    name: showilqar
+  cloud:
+    consul:
+      discovery:
+        enabled: false
+        instanceId: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+      config:
+        enabled: false
+      enabled: false
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
+  data:
+    mongodb:
+      host: localhost
+      port: 0
+      database: showilqar
+  mail:
+    host: localhost
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    basename: i18n/messages
+  task:
+    execution:
+      thread-name-prefix: showilqar-task-
+      pool:
+        core-size: 1
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: showilqar-scheduling-
+      pool:
+        size: 1
+  thymeleaf:
+    mode: HTML
+
+server:
+  port: 10344
+  address: localhost
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  clientApp:
+    name: 'showilqarApp'
+  logging:
+    # To test json console appender
+    use-json-format: false
+    logstash:
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
+        base64-secret: MTYyYjUwNDBhYTFhZWE1MWE4YzkxMDk4YTY0OGI5MzBjMmVkNDU2YTUwMWY3ODZkNjUzYWY3NDUyMGYwN2UyZGE0MjJmM2ZkZTA5ZjU3OTNiNDJkY2JhOTU2MjZkOGFmZDIyNTUzODg4MzgxOGY3NjNiYjMyNTI4ZmNjNzU1ZWE=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
